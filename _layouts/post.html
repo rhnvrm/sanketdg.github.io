@@ -8,7 +8,7 @@ layout: page
     </header>
 
     <!-- Post Tags -->
-    <ul class="c-tags">
+    <ul class="c-tags flex-container">
     {% for tag in page.tags %}
       <a href="{{ site.url }}/tags/#{{ tag | slugify }}" class="c-tag">{{ tag }}</a>
     {% endfor %}

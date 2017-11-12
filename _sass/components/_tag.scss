@@ -7,6 +7,7 @@ Tip
   margin: 0;
   overflow: hidden;
   padding: 0;
+  margin-bottom: 50px;
 }
 
 .c-tags li {
@@ -15,9 +16,10 @@ Tip
 
 .flex-container {
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 8em;
+  margin-bottom: 6em;
+
 }
 
 .c-item {
@@ -32,7 +34,7 @@ Tip
   height: 26px;
   line-height: 26px;
   padding: 0 20px 0 23px;
-  margin: 0 10px 50px 0;
+  margin: 0 10px 10px 0;
   text-decoration: none;
   -webkit-transition: color 0.2s;
 }
