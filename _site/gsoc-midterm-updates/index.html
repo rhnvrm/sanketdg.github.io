@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Summer of Code Midterm Updates - SanketDG</title>
+    <meta name="description" content="Talking about short updates, I have successfullycompleted parsing routines for Python and Java.My next task would be to use the coalang functionality to impl...">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,900,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/gsoc-midterm-updates/">
+    <link rel="alternate" type="application/rss+xml" title="SanketDG" href="http://localhost:4000/feed.xml">
+<script src="http://127.0.0.1:35729/livereload.js"></script></head>
+
+    <body>
+        <main class="u-container">
+        <div class="c-page">
+    <header class="c-page__header">
+    <h1>SanketDG</h1>
+
+
+    <p>
+        <a href="/">Home</a><span
+          class="u-separate"></span> <a href="/projects/">Projects</a><span class="u-separate"></span> <a href="/about/">About</a><span class="u-separate"></span><a href="/feed.xml">RSS</a>
+    </p>
+</header>
+
+    <div class="c-page__main">
+    <article class="c-article">
+    <header class="c-article__header">
+        <h1 class="c-article__title">Summer of Code Midterm Updates</h1>
+        <p class="c-article__time"><time datetime="2016-06-26T03:00:00+05:30" itemprop="datePublished">Jun 26, 2016</time></p>
+    </header>
+
+    <!-- Post Tags -->
+    <ul class="c-tags">
+    
+      <li class="c-tag">gsoc</li>
+    
+      <li class="c-tag">documentation</li>
+    
+    </ul>
+
+    <div class="c-article__main">
+        <p>Talking about short updates, I have successfully
+completed parsing routines for Python and Java.
+My next task would be to use the <code class="highlighter-rouge">coalang</code> functionality to implement
+parsing routines which are completely implicit and to provide support
+for C and C++ documentation styles.</p>
+
+<p>So instead of passing the parameter and return symbols as strings through a
+function, they would be extracted from the coalang files. A strong API
+to access coalang files would help here.</p>
+
+<p>Support for multiple params also need to be kept in mind. A documentation
+style can support many type of formats.</p>
+
+<p>After this is done, I will start working on the big thing i.e.
+<code class="highlighter-rouge">DocumentationBear</code>! The first feature of capitalizing sentences has
+been already implemented (needs a little bit of improvement.)</p>
+
+<p>The second thing to do is to implement checking the docs against a
+specified style. This can be done in two ways:</p>
+
+<ul>
+  <li>
+    <p>The first one involves the user supplying a regex to check against
+the documentation.</p>
+  </li>
+  <li>
+    <p>Another way would be to define some predefined styles that are generally
+followed as conventions in most projects, and then check them against the
+documentation. For example for python docstrings, two conventions seem to
+rule:</p>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>:param x:          blablabla
+:param muchtolong: blablabla
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>:param x:
+    blablabla
+:param muchtolong:
+    blablabla
+</code></pre>
+</div>
+
+<p>Supporting these two conventions as predefined styles would avoid most
+projects writing a complex regex.</p>
+
+<p>Then I would go forward with more functionality like indentation checking
+and wrapping of characters in a long line to subsequent lines. I will also
+check for grammar within documentation!</p>
+
+<p>If there is time available after all this, I would go forward with refactoring
+all the classes related with documentation extraction and improve the parsing
+routines to make them more dynamic. I would also like to tackle the problem where
+languages and docstyles have different fields for extracting, not only the current
+three(description, parameters and return values).</p>
+
+<p>On a final note, I have a issue tracker at <a href="https://gitlab.com/coala/GSoC2016/issues?scope=all&amp;sort=id_desc&amp;state=opened&amp;utf8=%E2%9C%93&amp;milestone_title=Documentation+Extraction">GitLab</a>. Also, to help me organize
+my work, I have opened a public Trello <a href="https://trello.com/b/corsZ0pn/gsoc-2016-documentation-extraction">board</a>. The board is empty right now,
+but I will start filling it up from tomorrow.</p>
+
+
+    </div>
+
+    <!-- Previous / Next Buttons -->
+    <div class="pagenav">
+		
+        <div class="wrapper" id="left">
+          <small><b>Previous</b> Jun 10, 2016</small>
+          <br>
+          <a href="/gsoc-week-2/">&laquo; Summer of Code Week 2</a>
+        </div>
+		
+		
+        <div class="wrapper" id="right">
+          <small>Jul 12, 2016 <b>Next</b></small>
+          <br>
+          <a href="/gsoc-week-2/">textwrap's my man! &raquo;</a>
+        </div>
+		
+		</div>
+
+		<!-- Disqus comments view -->
+		
+		<div class="post-disqus">
+				<section id="disqus_thread"></section>
+				<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+
+var disqus_config = function () {
+  this.page.url = /gsoc-midterm-updates/;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = /gsoc-midterm-updates; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://sanketdg.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+		</div>
+		
+</article>
+
+    </div>
+    <footer class="c-page__footer">
+    <p>&copy; SanketDG 2017</p>
+    <p><a href="https://twitter.com/SanketDG">Twitter</a><span class="u-separate"></span><a href="https://github.com/SanketDG">Github</a></p>
+</footer>
+
+</div>
+
+        </main>
+    
+    </body>
+</html>

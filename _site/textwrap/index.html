@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>textwrap's my man! - SanketDG</title>
+    <meta name="description" content="So I just discovered textwrap!Turns out, its the perfect thing I need for formatting my documentation under acertain line limit.">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,900,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/textwrap/">
+    <link rel="alternate" type="application/rss+xml" title="SanketDG" href="http://localhost:4000/feed.xml">
+<script src="http://127.0.0.1:35729/livereload.js"></script></head>
+
+    <body>
+        <main class="u-container">
+        <div class="c-page">
+    <header class="c-page__header">
+    <h1>SanketDG</h1>
+
+
+    <p>
+        <a href="/">Home</a><span
+          class="u-separate"></span> <a href="/projects/">Projects</a><span class="u-separate"></span> <a href="/about/">About</a><span class="u-separate"></span><a href="/feed.xml">RSS</a>
+    </p>
+</header>
+
+    <div class="c-page__main">
+    <article class="c-article">
+    <header class="c-article__header">
+        <h1 class="c-article__title">textwrap's my man!</h1>
+        <p class="c-article__time"><time datetime="2016-07-12T23:00:00+05:30" itemprop="datePublished">Jul 12, 2016</time></p>
+    </header>
+
+    <!-- Post Tags -->
+    <ul class="c-tags">
+    
+      <li class="c-tag">gsoc</li>
+    
+      <li class="c-tag">textwrap</li>
+    
+      <li class="c-tag">python</li>
+    
+    </ul>
+
+    <div class="c-article__main">
+        <p>So I just discovered <a href="https://docs.python.org/3/library/textwrap.html"><code class="highlighter-rouge">textwrap</code></a>!
+Turns out, its the perfect thing I need for formatting my documentation under a
+certain line limit.</p>
+
+<p>Remember how I talked about supporting two different documentation styles in my
+previous post? Well both kinds of formatting needs to have a upper line length
+limit.</p>
+
+<p>So a typical documentation comment consists of a lot of descriptions. These can
+be of one line or extend to paragraphs. But it’s important that the length
+of these descriptions be kept in check.</p>
+
+<p>So what we need to do, is to somehow <em>“wrap”</em> a paragraph of text to <code class="highlighter-rouge">n</code> lines,
+where <code class="highlighter-rouge">n</code> could have a default value or could be specified by the user.
+Turns out you can do that to paragraphs using the <code class="highlighter-rouge">textwrap</code> module. I have
+recorded it below:</p>
+
+<p><a href="https://asciinema.org/a/6zltnywo6c5gkwlbck1d0h11r"><img src="https://asciinema.org/a/6zltnywo6c5gkwlbck1d0h11r.png" alt="asciicast" /></a></p>
+
+<p>This really simplifies my work for the <code class="highlighter-rouge">DocumentationFormatBear</code>.</p>
+
+    </div>
+
+    <!-- Previous / Next Buttons -->
+    <div class="pagenav">
+		
+        <div class="wrapper" id="left">
+          <small><b>Previous</b> Jun 26, 2016</small>
+          <br>
+          <a href="/gsoc-midterm-updates/">&laquo; Summer of Code Midterm Updates</a>
+        </div>
+		
+		
+        <div class="wrapper" id="right">
+          <small>Jul 24, 2016 <b>Next</b></small>
+          <br>
+          <a href="/gsoc-midterm-updates/">Escaping! &raquo;</a>
+        </div>
+		
+		</div>
+
+		<!-- Disqus comments view -->
+		
+		<div class="post-disqus">
+				<section id="disqus_thread"></section>
+				<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+
+var disqus_config = function () {
+  this.page.url = /textwrap/;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = /textwrap; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://sanketdg.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+		</div>
+		
+</article>
+
+    </div>
+    <footer class="c-page__footer">
+    <p>&copy; SanketDG 2017</p>
+    <p><a href="https://twitter.com/SanketDG">Twitter</a><span class="u-separate"></span><a href="https://github.com/SanketDG">Github</a></p>
+</footer>
+
+</div>
+
+        </main>
+    
+    </body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>That's it, folks! - SanketDG</title>
+    <meta name="description" content="So this is it. The end of my Google Summer of Code. An amazing 12 weeks ofworking on a real project with deadlines and milestones.">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:300,400,900,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/gsoc-final-report/">
+    <link rel="alternate" type="application/rss+xml" title="SanketDG" href="http://localhost:4000/feed.xml">
+<script src="http://127.0.0.1:35729/livereload.js"></script></head>
+
+    <body>
+        <main class="u-container">
+        <div class="c-page">
+    <header class="c-page__header">
+    <h1>SanketDG</h1>
+
+
+    <p>
+        <a href="/">Home</a><span
+          class="u-separate"></span> <a href="/projects/">Projects</a><span class="u-separate"></span> <a href="/about/">About</a><span class="u-separate"></span><a href="/feed.xml">RSS</a>
+    </p>
+</header>
+
+    <div class="c-page__main">
+    <article class="c-article">
+    <header class="c-article__header">
+        <h1 class="c-article__title">That's it, folks!</h1>
+        <p class="c-article__time"><time datetime="2016-08-21T23:00:00+05:30" itemprop="datePublished">Aug 21, 2016</time></p>
+    </header>
+
+    <!-- Post Tags -->
+    <ul class="c-tags">
+    
+      <li class="c-tag">gsoc</li>
+    
+      <li class="c-tag">coala</li>
+    
+    </ul>
+
+    <div class="c-article__main">
+        <p>So this is it. The end of my Google Summer of Code. An amazing 12 weeks of
+working on a <em>real</em> project with <em>deadlines</em> and <em>milestones</em>.</p>
+
+<h3 id="thanks-awesome-mentor">Thanks, awesome mentor!</h3>
+
+<p>First and foremost, I would like to thank my mentor <a href="https://github.com/Makman2">Mischa Krüger</a> for his
+constant guidance and support through the tenure of my project.</p>
+
+<p>Thank you for clarifying my trivial issues that were way too trivial.
+Thank you for clearing my doubts on the design of the classes.
+Thank you for writing a basic layout for a prototype bear.
+Thank you for understanding when I was not able to meet certain deadlines.
+Thank you Mischa for being an awesome mentor.</p>
+
+<h3 id="the-beginning">The Beginning</h3>
+
+<p>I was first introduced to coala in <a href="https://www.hackerearth.com/sprints/open-source-india-hacks-2016/">HackerEarth IndiaHacks Open Source Hackathon</a>.
+I wanted to participate in it, so I took a look at the list of projects and saw
+coala. I jumped on their gitter channel and said <em>hi</em>. Lasse hit me back instantly,
+introduced me to the project, asked me to choose any newcomer issue, and my first
+patch got <a href="https://github.com/coala-analyzer/coala/pull/1195">accepted</a> in no time.</p>
+
+<p>As the hackathon came to an end, it was time for organisations to start thinking
+about Google Summer of Code. By then, I had been taking part in regular discussions, and code reviews, Lasse asked me if I’d like to do a GSoC:</p>
+
+<p><img src="http://i.imgur.com/QbLSmwH.png" alt="" /></p>
+
+<p>I slowly pivoted to choosing <em>language independent documentation extraction</em>
+as my GSoC project as I found it having greater depth than my other choices.</p>
+
+<p>I feel privileged to be contributing to coala. The project itself is awesome
+in its entirety. I have contributed to my fair share of open source projects
+and I have never found any other project that is so organized and newcomer
+friendly. How coala is awesome should be itself another post.</p>
+
+<h3 id="about-my-project">About my project</h3>
+
+<p>Now to my project. As stated repeatedly in my past posts, my project was to
+build a language independent documentation extraction and parsing library, and use
+it to develop bears (static analyzing routines.)</p>
+
+<h3 id="how-it-all-fits-together">How it all fits together</h3>
+
+<p>Most of the documentation extraction routines were already <a href="https://github.com/coala-analyzer/coala/blob/master/coalib/bearlib/languages/documentation/DocumentationExtraction.py">written</a> by my
+mentor. Except a couple of tiny bugs, it worked pretty well. The documentation
+extraction API was responsible for extracting the documentation given the
+language, docstyle and markers and return a <code class="highlighter-rouge">DocumentationComment</code> object.</p>
+
+<p>The <a href="https://github.com/coala-analyzer/coala/blob/master/coalib/bearlib/languages/documentation/DocumentationComment.py#L9"><code class="highlighter-rouge">DocumentationComment</code></a> class defines one documentation comment along with
+its language, docstyle, markers, indentation and range.</p>
+
+<p>My first task was to write a language independent parsing routine that
+would extract metadata out of a documentation i.e. description,
+parameter and return information. This <a href="https://github.com/coala-analyzer/coala/blob/master/coalib/bearlib/languages/documentation/DocumentationComment.py#L79">resides</a> inside the
+<code class="highlighter-rouge">DocumentationComment</code> class.</p>
+
+<p>The point of this parsing library is to allow bear developers manipulate
+metadata without worrying about destroying the format.</p>
+
+<p>I then had to make sure that I had support for the most popular languages.
+I used the unofficial <code class="highlighter-rouge">coalang</code> specification to <a href="https://github.com/coala-analyzer/coala/blob/master/coalib/bearlib/languages/documentation/default.coalang#L3-L5">define</a> keywords and symbols
+that are used in different documentation comments. They are being <a href="https://github.com/coala-analyzer/coala/blob/master/coalib/bearlib/languages/documentation/DocstyleDefinition.py#L181-L184">loaded</a> along
+with the docstyle.</p>
+
+<p>Although I do not use the <code class="highlighter-rouge">coalang</code> stuff yet and still pass keywords and
+symbols <a href="https://github.com/coala-analyzer/coala/blob/master/coalib/bearlib/languages/documentation/DocumentationComment.py#L65">manually</a>, it will be used in future.</p>
+
+<p>Lastly, I had to implement a function to assemble a parsed documentation
+into a documentation comment.</p>
+
+<p>I separated this functionality into two functions:</p>
+
+<ul>
+  <li>
+    <p>The <a href="https://github.com/coala-analyzer/coala/blob/master/coalib/bearlib/languages/documentation/DocumentationComment.py#L146">first</a> function would take in a list of parsed documentation comment
+metadata and construct a <code class="highlighter-rouge">DocumentationComment</code> object from that. The
+object would contain the assembled documentation comment and its other
+characteristics. Note that this just assembles the inside of the
+documentation comment, not accounting for the indentation and markers.</p>
+  </li>
+  <li>
+    <p>The <a href="https://github.com/coala-analyzer/coala/blob/master/coalib/bearlib/languages/documentation/DocumentationComment.py#L201">second</a> function takes this <code class="highlighter-rouge">DocumentationComment</code> object and assembles it
+into a documentation comment, as it should be, taking account of the indentation
+and the markers.</p>
+  </li>
+</ul>
+
+<h3 id="difficulties-faced">Difficulties faced</h3>
+
+<ul>
+  <li>The first difficulty I faced was the design of the parsing module itself.
+With the help of my mentor, I was able to sort that out. We decided on
+using namedtuples for each of the metadata:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Parameter = namedtuple('Parameter', 'name, desc')
+ReturnValue = namedtuple('ReturnValue', 'desc')
+Description = namedtuple('Description', 'desc')
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>If I wanted to make the library completely language independent, most settings
+would have to be configurable to the end user. Initially I hardcoded the keywords
+and symbols that I used, but later the coalang specification was used to define
+the settings. They are yet to be used in the library.</p>
+  </li>
+  <li>
+    <p>While trying to use the above mentioned settings, I realized that the settings
+extraction didn’t work for trailing spaces. Since I had to have settings with
+trailing whitespace, I had to fix the extraction in the <code class="highlighter-rouge">LineParser</code> class.</p>
+  </li>
+</ul>
+
+<h3 id="what-has-been-done-till-now">What has been done till now</h3>
+
+<h4 id="coala">coala</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/56e1802">56e1802</a></td>
+      <td>DocumentationComment: Add language, docstyle param</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/72b6c9c">72b6c9c</a></td>
+      <td>DocumentationComment: Add indent param</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/bc4d7d0">bc4d7d0</a></td>
+      <td>DocumentationComment: Parse python docstrings</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/337b7c1">337b7c1</a></td>
+      <td>DocumentationComment: Parse python doxygen docs</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/99fa059">99fa059</a></td>
+      <td>DocumentationCommentTest: Refactor</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/fc2e3bf">fc2e3bf</a></td>
+      <td>DocumentationComment: Add JavaDoc parsing</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/12ede4f">12ede4f</a></td>
+      <td>ConsoleInteraction: Fix empty line tab display</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/07135f5">07135f5</a></td>
+      <td>DocumentationExtraction: Fix newline parsing</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/5df5932">5df5932</a></td>
+      <td>DocumentationComment: Fix python parsing</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/f731ee4">f731ee4</a></td>
+      <td>DocumentationComment: Remove redundant code</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/e442dce">e442dce</a></td>
+      <td>TestUtils: Create load_testdata for loading docs</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/7de9aed">7de9aed</a></td>
+      <td>LineParser: Fix stripping for escaped whitespace</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/31b0410">31b0410</a></td>
+      <td>DocstyleDefinition: Add metadata param</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/edc67aa">edc67aa</a></td>
+      <td>DocumentationExtraction: Conform to pep8</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/3a78aa9">3a78aa9</a></td>
+      <td>DocumentationComment: Use DocstyleDefinition</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/dc35a0a">dc35a0a</a></td>
+      <td>DocumentationComment: Add from_metadata()</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/78ff315">78ff315</a></td>
+      <td>DocumentationComment: Add assemble()</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/coala-analyzer/coala/commit/3c239d7">3c239d7</a></td>
+      <td>setup: Package coalang files</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="what-lies-ahead">What lies ahead</h2>
+
+<p>The API still has a long way to go. A lot of things can be added/improved:</p>
+
+<ul>
+  <li>
+    <p>Maybe the use of namedtuples is not that efficient. I think classes should be used and subclassed from these namedtuples. This will allow the API to be way
+more flexible than it currently is, and also retaining the advantages with using
+namedtuple.</p>
+  </li>
+  <li>
+    <p>A cornercase in assembling <a href="https://github.com/coala-analyzer/coala/issues/2645">#2645</a></p>
+  </li>
+  <li>
+    <p>Range is not being calculated correctly. <a href="https://github.com/coala-analyzer/coala/issues/2646">#2646</a></p>
+  </li>
+  <li>
+    <p>The API is not using the coalang symbols/keywords. <a href="https://github.com/coala-analyzer/coala/issues/2629">#2629</a></p>
+  </li>
+  <li>
+    <p>A lot of things are just assumed from the documentation while parsing.
+Related: <a href="https://github.com/coala-analyzer/coala/issues/2143">#2143</a></p>
+  </li>
+  <li>
+    <p>Trivial: <a href="https://github.com/coala-analyzer/coala/issues/2617">#2617</a>, <a href="https://github.com/coala-analyzer/coala/issues/2616">#2616</a></p>
+  </li>
+  <li>
+    <p>A lot of documentation related bears can be developed from this API.</p>
+  </li>
+</ul>
+
+<p>It has been an awesome 3 months and an even more awesome 7 months of contributing
+to coala. That’s it folks!</p>
+
+<h3 id="other-projects">Other projects.</h3>
+
+<p>Also, I want to talk about the projects of other students:</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/hypothesist">@hypothesist</a> did an awesome job on <a href="https://github.com/coala-analyzer/coala-quickstart"><code class="highlighter-rouge">coala-quickstart</code></a>. The time saved in using
+<code class="highlighter-rouge">coala-quickstart</code> vs. writing your own <code class="highlighter-rouge">.coafile</code> is huge and this will lead to
+more projects using coala. He has also worked on caching files to speed up <code class="highlighter-rouge">coala</code>.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/tushar-rishav">@tushar-rishav</a> built <a href="https://github.com/coala-analyzer/coala-html"><code class="highlighter-rouge">coala-html</code></a>! Its a web app for showing your coala results.
+He has also been working on a new <a href="https://gitlab.com/coala/website/">website</a> for coala.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/mr-karan">@mr-karan</a> did some cool <a href="https://gitlab.com/coala/website/">documentation</a> for the <code class="highlighter-rouge">bears</code> and implemented syntax
+highlighting in the terminal.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/Adrianzatreanu">@Adrianzatreanu</a> worked on the <code class="highlighter-rouge">Requirements</code> API.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/Redridge">@Redridge</a>’s work on <code class="highlighter-rouge">External Bears</code> will help you <a href="http://coala.readthedocs.io/en/latest/Users/Tutorials/External_Bears.html">write</a> bears in your
+favourite programming language.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/abhsag24">@abhsag24</a> worked on the <code class="highlighter-rouge">coalang</code> specification. We can finally integrate
+language independent bears seamlessly!</p>
+  </li>
+  <li>
+    <p>Thanks to <a href="https://github.com/arafsheikh">@arafsheikh</a>, you can now <a href="https://github.com/coala-analyzer/coala-eclipse">use</a> <code class="highlighter-rouge">coala</code> in Eclipse.</p>
+  </li>
+</ul>
+
+
+    </div>
+
+    <!-- Previous / Next Buttons -->
+    <div class="pagenav">
+		
+        <div class="wrapper" id="left">
+          <small><b>Previous</b> Aug 8, 2016</small>
+          <br>
+          <a href="/things-that-needed-fixing/">&laquo; Things that needed fixing.</a>
+        </div>
+		
+		
+        <div class="wrapper" id="right">
+          <small>Jun 2, 2017 <b>Next</b></small>
+          <br>
+          <a href="/things-that-needed-fixing/">GSoC Mentoring Starts &raquo;</a>
+        </div>
+		
+		</div>
+
+		<!-- Disqus comments view -->
+		
+		<div class="post-disqus">
+				<section id="disqus_thread"></section>
+				<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+
+var disqus_config = function () {
+  this.page.url = /gsoc-final-report/;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = /gsoc-final-report; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://sanketdg.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+		</div>
+		
+</article>
+
+    </div>
+    <footer class="c-page__footer">
+    <p>&copy; SanketDG 2017</p>
+    <p><a href="https://twitter.com/SanketDG">Twitter</a><span class="u-separate"></span><a href="https://github.com/SanketDG">Github</a></p>
+</footer>
+
+</div>
+
+        </main>
+    
+    </body>
+</html>
